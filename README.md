@@ -13,4 +13,8 @@ Using Typescript in Express project.
 
 # demo3
 
-Using SQLServer database.
+Using SQLServer database in Express project.
+
+# demo4
+
+Using sequelize ORM in Express project.

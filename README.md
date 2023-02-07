@@ -5,4 +5,8 @@ How to build a server using Express, Introducing Typescript and using SQLServer 
 # demo1
 
 Empty Express frame.
-Create an express project using the express-generator scaffold.
+Create an Express project using the express-generator scaffold.
+
+# demo2
+
+Using Typescript in Express project.

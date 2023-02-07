@@ -1,6 +1,6 @@
 # express-study
 
-How to build a server using Express, Introducing Typescript and using SQLServer database
+How to build a server using Express, Introducing Typescript and using SQLServer database, sequelize ORM
 
 # demo1
 
@@ -18,3 +18,9 @@ Using SQLServer database in Express project.
 # demo4
 
 Using sequelize ORM in Express project.
+
+# demo5
+
+Build a small e-commerce platform based on pseudo demand.
+Using Typescript
+Using sqlite database and sequelize ORM

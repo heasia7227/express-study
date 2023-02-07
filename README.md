@@ -4,7 +4,7 @@ How to build a server using Express, Introducing Typescript and using SQLServer 
 
 # demo1
 
-Empty Express frame.
+Empty Express frame.<br />
 Create an Express project using the express-generator scaffold.
 
 # demo2
@@ -21,6 +21,6 @@ Using sequelize ORM in Express project.
 
 # demo5
 
-Build a small e-commerce platform based on pseudo demand.
-Using Typescript
-Using sqlite database and sequelize ORM
+Build a small e-commerce platform based on pseudo demand.<br />
+Using Typescript<br />
+Using sqlite database and sequelize ORM<br />

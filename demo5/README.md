@@ -16,7 +16,7 @@ edit npm configuration file, location is C:\Users\SystemUser\.npmrc
 
 ```
 disturl=https://npm.taobao.org/dist
-strict-ssl=false #保证不做ssl验证
+strict-ssl=false # don't verify ssl
 registry=https://registry.npm.taobao.org/
 node_sqlite3_binary_host_mirror=https://npm.taobao.org/mirrors/
 ```
@@ -25,5 +25,11 @@ CMD
 
 ```
 set NODE_TLS_REJECT_UNAUTHORIZED=0
-npm install sqlite3@5.0.0 -g
+npm install sqlite3@5.0.0 --save
+```
+
+# Using swagger api docs
+
+```
+npm install express-swagger-generator --save
 ```

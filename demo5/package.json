@@ -3,12 +3,14 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "nodemon"
+        "start": "cross-env TS_NODE_FILES=true nodemon"
     },
     "dependencies": {
         "cookie-parser": "~1.4.4",
+        "cross-env": "^7.0.3",
         "debug": "~2.6.9",
         "express": "~4.16.1",
+        "express-swagger-generator": "^1.1.17",
         "http-errors": "~1.6.3",
         "jade": "~1.11.0",
         "morgan": "~1.9.1",

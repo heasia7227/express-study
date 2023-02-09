@@ -3,14 +3,16 @@ import createError from "http-errors";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import controllers from "./controllers";
+import swagger from "./middleware/swagger";
 
 const app = express();
 
+swagger(app);
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(controllers);
+app.use("/v1/api", controllers);
 
 // catch 404 and forward to error handler
 app.use((req: Request, res: Response, next: NextFunction) => {

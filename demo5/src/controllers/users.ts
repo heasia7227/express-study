@@ -1,8 +1,9 @@
 import express, { NextFunction, Request, Response } from "express";
 import UserService from "../services/user";
-const router = express.Router();
 
-router.get("/", function (req: Request, res: Response, next: NextFunction) {
+const controller = express.Router();
+
+controller.get("/users", function (req: Request, res: Response, next: NextFunction) {
     UserService.login();
 
     res.json({
@@ -11,4 +12,4 @@ router.get("/", function (req: Request, res: Response, next: NextFunction) {
     });
 });
 
-export default router;
+export default controller;

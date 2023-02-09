@@ -1,11 +1,12 @@
 import User from "../models/user";
 
 const UserService = {
-    login: () => {
-        console.log("UserService login");
-        User.findOne({ where: { userName: "arthur", password: "123" } }).then((data) => {
-            console.log("findOne data: ", data);
-        });
+    login: async (userName: string, password: string) => {
+        if (!userName || !password) {
+            return false;
+        }
+        const data = await User.findOne({ where: { userName, password } });
+        return !!data?.dataValues;
     },
 };
 

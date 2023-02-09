@@ -4,19 +4,27 @@ import UserService from "../services/user";
 const controller = express.Router();
 
 /**
+ * @typedef LoginParams
+ * @property {string} userName.required
+ * @property {string} password.required
+ */
+
+/**
  * @route POST /users/login
  * @group user
- * @param {string} username.query.required - username
- * @param {string} password.query.required - user's password.
+ * @param {LoginParams.model} LoginParams.body.required
  * @returns {object} 200 - verify result
  * @returns {Error}  default - Unexpected error
  */
-controller.post("/login", function (req: Request, res: Response, next: NextFunction) {
-    UserService.login();
+controller.post("/login", async (request: Request, response: Response, next: NextFunction) => {
+    console.log("request.body: ", request.body);
+    const { userName, password } = request.body;
 
-    res.json({
+    const result = await UserService.login(userName, password);
+
+    response.json({
         code: 200,
-        data: "user login.",
+        data: result ? "user login." : "userName or password error.",
     });
 });
 

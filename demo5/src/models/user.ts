@@ -1,8 +1,17 @@
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelize from "../db/sqlite";
+import { IUser } from "../interfaces/user";
 
-const User = sequelize.define(
-    "User",
+class User extends Model {
+    getUser(): IUser {
+        return this.dataValues;
+    }
+    getUsers(): Array<IUser> {
+        return this.dataValues;
+    }
+}
+
+User.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -31,6 +40,7 @@ const User = sequelize.define(
         },
     },
     {
+        sequelize,
         tableName: "t_user",
         createdAt: false,
         updatedAt: false,

@@ -23,7 +23,7 @@ const expressSwagger = (app: Express) => {
             },
         },
         basedir: __dirname, //app absolute path
-        files: ["../../controllers/**/*.ts"], //Path to the API handle folder
+        files: ["../../controllers/**/*.ts", "../../interfaces/**/*.ts"], //Path to the API handle folder
     };
 
     const swagger = generator(app);

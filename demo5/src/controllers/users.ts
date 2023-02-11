@@ -11,11 +11,12 @@ const controller = express.Router();
  * @returns {Error}  default - Unexpected error
  */
 controller.post("/login", async (request: Request, response: Response, next: NextFunction) => {
-    const result = await UserService.login(request.body);
-    response.json({
-        code: 200,
-        data: result ? "user login." : "userName or password error.",
-    });
+    const token = await UserService.login(request.body);
+    if (token) {
+        response.json({ code: 200, data: token, message: "user login." });
+    } else {
+        response.json({ code: 500, message: "userName or password error." });
+    }
 });
 
 /**
@@ -24,14 +25,14 @@ controller.post("/login", async (request: Request, response: Response, next: Nex
  * @param {integer} userId.path.required - userId
  * @returns {object} 200 - verify result
  * @returns {Error}  default - Unexpected error
+ * @security JWT
  */
-controller.get("/:userId", function (req: Request, res: Response, next: NextFunction) {
-    console.log("req.params: ", req.params);
-    console.log("req.query: ", req.query);
-
+controller.get("/:userId", async (req: Request, res: Response, next: NextFunction) => {
+    const { userId } = req.params;
+    const user = await UserService.getUserById(Number(userId));
     res.json({
         code: 200,
-        data: "user find.",
+        data: user,
     });
 });
 

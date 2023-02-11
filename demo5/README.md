@@ -33,3 +33,10 @@ npm install sqlite3@5.0.0 --save
 ```
 npm install express-swagger-generator --save
 ```
+
+# Using jsonwebtoken manage user's passport
+
+```
+npm install jsonwebtoken --save
+npm install @types/jsonwebtoken --save-dev
+```

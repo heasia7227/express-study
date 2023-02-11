@@ -2,8 +2,10 @@ import express, { NextFunction, Request, Response } from "express";
 import createError from "http-errors";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+import config from "./config";
 import controllers from "./controllers";
 import swagger from "./middleware/swagger";
+import filter from "./middleware/filter";
 
 const app = express();
 
@@ -12,10 +14,11 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use("/v1/api", controllers);
+app.use(filter);
+app.use(config.baseUrl, controllers);
 
 // catch 404 and forward to error handler
-app.use((req: Request, res: Response, next: NextFunction) => {
+app.use((request: Request, response: Response, next: NextFunction) => {
     next(createError(404));
 });
 

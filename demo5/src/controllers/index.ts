@@ -5,7 +5,7 @@ import goodsController from "./goods";
 const controller = express.Router();
 
 controller.use("/users", usersController);
-// controller.use(usersController, goodsController);
+controller.use("/goods", goodsController);
 
 controller.get("/", function (req: Request, res: Response, next: NextFunction) {
     res.json({

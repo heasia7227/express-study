@@ -6,9 +6,6 @@ class User extends Model {
     getUser(): IUser {
         return this.dataValues;
     }
-    getUsers(): Array<IUser> {
-        return this.dataValues;
-    }
 }
 
 User.init(
@@ -16,6 +13,7 @@ User.init(
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
+            autoIncrement: true,
         },
         userName: {
             type: DataTypes.STRING,

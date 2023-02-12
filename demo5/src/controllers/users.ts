@@ -23,7 +23,7 @@ controller.post("/login", async (request: Request, response: Response, next: Nex
  * @route GET /users/{userId}
  * @group user
  * @param {integer} userId.path.required - userId
- * @returns {object} 200 - verify result
+ * @returns {object} 200 - user detail
  * @returns {Error}  default - Unexpected error
  * @security JWT
  */

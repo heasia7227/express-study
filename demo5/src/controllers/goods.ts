@@ -1,11 +1,18 @@
 import express, { NextFunction, Request, Response } from "express";
-
+import GoodsService from "../services/goods";
 const controller = express.Router();
 
-controller.get("/goods", function (req: Request, res: Response, next: NextFunction) {
-    res.json({
+/**
+ * @route GET /goods
+ * @group goods
+ * @returns {object} 200 - goods items
+ * @returns {Error}  default - Unexpected error
+ */
+controller.get("/", async (request: Request, response: Response, next: NextFunction) => {
+    const goodsList = await GoodsService.getGoodsList();
+    response.json({
         code: 200,
-        data: "goods list111.",
+        data: goodsList,
     });
 });
 

@@ -1,6 +1,6 @@
 const config = {
     baseUrl: "/v1/api",
-    ignoreFilters: ["/users/login"],
+    ignoreFilters: ["/users/login", "/goods"],
 };
 
 export default config;

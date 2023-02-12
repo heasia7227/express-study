@@ -25,3 +25,4 @@ Build a small e-commerce platform based on pseudo demand.<br />
 Using Typescript<br />
 Using sqlite database and sequelize ORM<br />
 Using swagger api docs<br />
+Using jsonwebtoken generate token<br />

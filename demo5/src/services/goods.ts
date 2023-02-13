@@ -1,18 +1,21 @@
 import { IGoods } from "../interfaces/goods";
-import Category from "../models/category";
-import Goods from "../models/goods";
+import { Category, Goods } from "../models";
 
 const GoodsService = {
     getGoodsList: async (): Promise<Array<IGoods>> => {
         const data = await Goods.findAll({
             include: [
                 {
-                    model: Category,
+                    association: Goods.category,
                     as: "category",
+                },
+                {
+                    association: Goods.pictures,
+                    as: "pictures",
                 },
             ],
         });
-        return data.map((item) => item.getGoods());
+        return data.map((item) => item.dataValues);
     },
 };
 

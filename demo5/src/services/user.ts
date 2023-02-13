@@ -1,5 +1,5 @@
-import { ILoginParams } from "../interfaces/user";
-import User from "../models/user";
+import { ILoginParams, IUser } from "../interfaces/user";
+import { User } from "../models";
 import TokenService from "./token";
 
 const UserService = {
@@ -9,12 +9,12 @@ const UserService = {
             return "";
         }
         const data = await User.findOne({ where: { userName, password } });
-        const token = TokenService.generateToken(data?.getUser());
+        const token = TokenService.generateToken(data?.dataValues);
         return token;
     },
-    getUserById: async (id: number) => {
+    getUserById: async (id: number): Promise<IUser> => {
         const data = await User.findByPk(id);
-        return data?.getUser();
+        return data?.dataValues;
     },
 };
 

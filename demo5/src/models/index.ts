@@ -14,11 +14,9 @@ const Goods = GoodsModel(sequelize);
 const GoodsComment = GoodsCommentModel(sequelize);
 const GoodsPicture = GoodsPictureModel(sequelize);
 
-Goods.category = Goods.belongsTo(Category, {
-    foreignKey: "category_id",
-});
+Goods.category = Goods.belongsTo(Category);
 Goods.pictures = Goods.hasMany(GoodsPicture, {
-    foreignKey: "goods_id",
+    foreignKey: { name: "goodsId", field: "goods_id" },
 });
 
 GoodsComment.belongsTo(User);

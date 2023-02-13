@@ -1,6 +1,19 @@
 const config = {
     baseUrl: "/v1/api",
-    ignoreFilters: ["/users/login", "/goods"],
+    ignoreFilters: [
+        {
+            rule: "/users/login",
+            method: "POST",
+        },
+        {
+            rule: "/goods",
+            method: "GET",
+        },
+        {
+            rule: "/goods/\\d*",
+            method: "GET",
+        },
+    ],
 };
 
 export default config;

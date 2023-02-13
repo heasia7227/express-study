@@ -17,6 +17,21 @@ const GoodsService = {
         });
         return data.map((item) => item.dataValues);
     },
+    getGoods: async (goodsId: number): Promise<IGoods> => {
+        const data = await Goods.findByPk(goodsId, {
+            include: [
+                {
+                    association: Goods.category,
+                    as: "category",
+                },
+                {
+                    association: Goods.pictures,
+                    as: "pictures",
+                },
+            ],
+        });
+        return data?.dataValues;
+    },
 };
 
 export default GoodsService;

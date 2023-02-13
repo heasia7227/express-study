@@ -3,7 +3,14 @@ import config from "../../config";
 import TokenService from "../../services/token";
 
 const Filter = (request: Request, response: Response, next: NextFunction) => {
-    const ignore = config.ignoreFilters.some((item) => request.url.endsWith(item));
+    const ignore = config.ignoreFilters.some((item) => {
+        if (request.method === item.method) {
+            const rule = `^${item.rule}$`;
+            const regex = new RegExp(rule);
+            return regex.test(request.url.substring(config.baseUrl.length));
+        }
+        return false;
+    });
     if (ignore) {
         next();
     } else {

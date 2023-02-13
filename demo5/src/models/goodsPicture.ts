@@ -2,7 +2,7 @@ import { DataTypes, Sequelize } from "sequelize";
 
 const GoodsPictureModel = (sequelize: Sequelize) => {
     return sequelize.define(
-        "goodsPicture",
+        "picture",
         {
             id: {
                 type: DataTypes.INTEGER,
@@ -13,10 +13,6 @@ const GoodsPictureModel = (sequelize: Sequelize) => {
             isCover: {
                 type: DataTypes.INTEGER,
                 field: "is_cover",
-            },
-            goodsId: {
-                type: DataTypes.INTEGER,
-                field: "goods_id",
             },
         },
         {

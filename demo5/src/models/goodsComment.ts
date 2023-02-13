@@ -2,7 +2,7 @@ import { DataTypes, Sequelize } from "sequelize";
 
 const GoodsCommentModel = (sequelize: Sequelize) => {
     return sequelize.define(
-        "goodsComment",
+        "comment",
         {
             id: {
                 type: DataTypes.INTEGER,

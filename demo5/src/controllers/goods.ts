@@ -32,4 +32,20 @@ controller.get("/:goodsId", async (request: Request, response: Response, next: N
     });
 });
 
+/**
+ * @route POST /goods
+ * @group goods
+ * @param {GoodsAddCommand.model} GoodsAddCommand.body.required
+ * @returns {object} 200 - add goods result
+ * @returns {Error}  default - Unexpected error
+ * @security JWT
+ */
+controller.post("/", async (request: Request, response: Response, next: NextFunction) => {
+    const result = await GoodsService.addGoods(request.body);
+    response.json({
+        code: 200,
+        data: result,
+    });
+});
+
 export default controller;

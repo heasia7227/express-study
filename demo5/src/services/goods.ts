@@ -1,5 +1,5 @@
-import { IGoods } from "../interfaces/goods";
-import { Category, Goods, GoodsComment } from "../models";
+import { IGoods, IGoodsAddCommand } from "../interfaces/goods";
+import { Goods, GoodsComment } from "../models";
 
 const GoodsService = {
     getGoodsList: async (): Promise<Array<IGoods>> => {
@@ -12,6 +12,7 @@ const GoodsService = {
                 {
                     association: Goods.pictures,
                     as: "pictures",
+                    where: { isCover: 1 },
                 },
             ],
         });
@@ -41,6 +42,18 @@ const GoodsService = {
             ],
         });
         return data?.dataValues;
+    },
+    addGoods: async (goods: IGoodsAddCommand): Promise<boolean> => {
+        const newGoods = await Goods.create(goods as any, {
+            include: [
+                {
+                    association: Goods.pictures,
+                    as: "pictures",
+                },
+            ],
+        });
+        console.log("newGoods: ", newGoods);
+        return true;
     },
 };
 

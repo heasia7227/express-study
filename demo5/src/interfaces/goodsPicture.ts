@@ -1,7 +1,7 @@
 import { IGoods } from "./goods";
 
 export interface IGoodsPicture {
-    id: number;
+    id?: number;
     path: string;
     isCover: number;
 }

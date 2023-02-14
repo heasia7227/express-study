@@ -10,3 +10,9 @@ export interface IGoodsComment {
     goodsId: number;
     orderId: number;
 }
+
+/**
+ * @typedef GoodsPictureAddCommand
+ * @property {string} path.required
+ * @property {number} isCover.required
+ */

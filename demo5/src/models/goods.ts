@@ -4,6 +4,7 @@ const GoodsModel = (sequelize: Sequelize) => {
     class Goods extends Model {
         declare static category: any;
         declare static pictures: any;
+        declare static comments: any;
     }
     Goods.init(
         {
@@ -17,10 +18,6 @@ const GoodsModel = (sequelize: Sequelize) => {
             state: DataTypes.INTEGER,
             remark: DataTypes.STRING,
             detail: DataTypes.STRING,
-            categoryId: {
-                type: DataTypes.INTEGER,
-                field: "category_id",
-            },
         },
         {
             sequelize,

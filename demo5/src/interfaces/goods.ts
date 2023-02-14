@@ -1,4 +1,5 @@
 import { ICategory } from "./category";
+import { IGoodsComment } from "./goodsComment";
 import { IGoodsPicture } from "./goodsPicture";
 
 export interface IGoods {
@@ -11,4 +12,5 @@ export interface IGoods {
     categoryId: number;
     category: ICategory;
     pictures: Array<IGoodsPicture>;
+    comments: Array<IGoodsComment>;
 }

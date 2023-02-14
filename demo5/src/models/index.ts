@@ -14,12 +14,19 @@ const Goods = GoodsModel(sequelize);
 const GoodsComment = GoodsCommentModel(sequelize);
 const GoodsPicture = GoodsPictureModel(sequelize);
 
-Goods.category = Goods.belongsTo(Category);
+Goods.category = Goods.belongsTo(Category, {
+    foreignKey: { name: "categoryId", field: "category_id" },
+});
 Goods.pictures = Goods.hasMany(GoodsPicture, {
     foreignKey: { name: "goodsId", field: "goods_id" },
 });
+Goods.comments = Goods.hasMany(GoodsComment, {
+    foreignKey: { name: "goodsId", field: "goods_id" },
+});
 
-GoodsComment.belongsTo(User);
+GoodsComment.user = GoodsComment.belongsTo(User, {
+    foreignKey: { name: "userId", field: "user_id" },
+});
 
 export { User, Category, Goods, GoodsComment, GoodsPicture };
 export default sequelize;

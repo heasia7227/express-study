@@ -1,8 +1,11 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { DataTypes, Model, Sequelize } from "sequelize";
 
 const GoodsCommentModel = (sequelize: Sequelize) => {
-    return sequelize.define(
-        "comment",
+    class GoodsComment extends Model {
+        declare static user: any;
+    }
+
+    GoodsComment.init(
         {
             id: {
                 type: DataTypes.INTEGER,
@@ -10,27 +13,25 @@ const GoodsCommentModel = (sequelize: Sequelize) => {
                 autoIncrement: true,
             },
             comment: DataTypes.STRING,
-            commentTime: DataTypes.STRING,
+            commentTime: {
+                type: DataTypes.STRING,
+                field: "comment_time",
+            },
             stars: DataTypes.INTEGER,
-            userId: {
-                type: DataTypes.INTEGER,
-                field: "user_id",
-            },
-            goodsId: {
-                type: DataTypes.INTEGER,
-                field: "goods_id",
-            },
             orderId: {
                 type: DataTypes.INTEGER,
                 field: "order_id",
             },
         },
         {
+            sequelize,
             tableName: "t_goods_comment",
+            modelName: "comment",
             createdAt: false,
             updatedAt: false,
         }
     );
+    return GoodsComment;
 };
 
 export default GoodsCommentModel;

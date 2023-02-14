@@ -1,8 +1,8 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { DataTypes, Model, Sequelize } from "sequelize";
 
 const UserModel = (sequelize: Sequelize) => {
-    return sequelize.define(
-        "user",
+    class User extends Model {}
+    User.init(
         {
             id: {
                 type: DataTypes.INTEGER,
@@ -32,11 +32,14 @@ const UserModel = (sequelize: Sequelize) => {
             },
         },
         {
+            sequelize,
             tableName: "t_user",
+            modelName: "user",
             createdAt: false,
             updatedAt: false,
         }
     );
+    return User;
 };
 
 export default UserModel;

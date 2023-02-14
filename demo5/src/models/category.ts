@@ -1,8 +1,8 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { DataTypes, Model, Sequelize } from "sequelize";
 
 const CategoryModel = (sequelize: Sequelize) => {
-    return sequelize.define(
-        "category",
+    class Category extends Model {}
+    Category.init(
         {
             id: {
                 type: DataTypes.INTEGER,
@@ -20,11 +20,14 @@ const CategoryModel = (sequelize: Sequelize) => {
             state: DataTypes.INTEGER,
         },
         {
+            sequelize,
             tableName: "t_category",
+            modelName: "category",
             createdAt: false,
             updatedAt: false,
         }
     );
+    return Category;
 };
 
 export default CategoryModel;

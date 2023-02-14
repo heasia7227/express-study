@@ -1,8 +1,8 @@
-import { DataTypes, Sequelize } from "sequelize";
+import { DataTypes, Model, Sequelize } from "sequelize";
 
 const GoodsPictureModel = (sequelize: Sequelize) => {
-    return sequelize.define(
-        "picture",
+    class GoodsPicture extends Model {}
+    GoodsPicture.init(
         {
             id: {
                 type: DataTypes.INTEGER,
@@ -16,11 +16,14 @@ const GoodsPictureModel = (sequelize: Sequelize) => {
             },
         },
         {
+            sequelize,
             tableName: "t_goods_picture",
+            modelName: "picture",
             createdAt: false,
             updatedAt: false,
         }
     );
+    return GoodsPicture;
 };
 
 export default GoodsPictureModel;

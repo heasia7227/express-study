@@ -1,5 +1,5 @@
 import { IGoods } from "../interfaces/goods";
-import { Category, Goods } from "../models";
+import { Category, Goods, GoodsComment } from "../models";
 
 const GoodsService = {
     getGoodsList: async (): Promise<Array<IGoods>> => {
@@ -27,6 +27,16 @@ const GoodsService = {
                 {
                     association: Goods.pictures,
                     as: "pictures",
+                },
+                {
+                    association: Goods.comments,
+                    as: "comments",
+                    include: [
+                        {
+                            association: GoodsComment.user,
+                            as: "user",
+                        },
+                    ],
                 },
             ],
         });

@@ -16,3 +16,10 @@ export interface IGoodsComment {
  * @property {string} path.required
  * @property {number} isCover.required
  */
+
+/**
+ * @typedef GoodsPictureEditCommand
+ * @property {number} id
+ * @property {string} path.required
+ * @property {number} isCover.required
+ */

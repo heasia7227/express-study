@@ -34,3 +34,18 @@ export interface IGoodsAddCommand {
     categoryId: number;
     pictures: Array<IGoodsPicture>;
 }
+
+/**
+ * @typedef GoodsEditCommand
+ * @property {number} id.required
+ * @property {string} title.required
+ * @property {number} price.required
+ * @property {number} state.required
+ * @property {string} remark.required
+ * @property {string} detail.required
+ * @property {number} categoryId.required
+ * @property {Array<GoodsPictureEditCommand>} pictures.required
+ */
+export interface IGoodsEditCommand extends IGoodsAddCommand {
+    id: number;
+}

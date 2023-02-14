@@ -1,16 +1,16 @@
-import { IGoods, IGoodsAddCommand } from "../interfaces/goods";
-import { Goods, GoodsComment } from "../models";
+import { IGoods, IGoodsAddCommand, IGoodsEditCommand } from "../interfaces/goods";
+import { Goods, GoodsComment, GoodsPicture } from "../models";
 
 const GoodsService = {
     getGoodsList: async (): Promise<Array<IGoods>> => {
         const data = await Goods.findAll({
             include: [
                 {
-                    association: Goods.category,
+                    association: Goods.Category,
                     as: "category",
                 },
                 {
-                    association: Goods.pictures,
+                    association: Goods.Pictures,
                     as: "pictures",
                     where: { isCover: 1 },
                 },
@@ -22,19 +22,19 @@ const GoodsService = {
         const data = await Goods.findByPk(goodsId, {
             include: [
                 {
-                    association: Goods.category,
+                    association: Goods.Category,
                     as: "category",
                 },
                 {
-                    association: Goods.pictures,
+                    association: Goods.Pictures,
                     as: "pictures",
                 },
                 {
-                    association: Goods.comments,
+                    association: Goods.Comments,
                     as: "comments",
                     include: [
                         {
-                            association: GoodsComment.user,
+                            association: GoodsComment.User,
                             as: "user",
                         },
                     ],
@@ -43,16 +43,51 @@ const GoodsService = {
         });
         return data?.dataValues;
     },
-    addGoods: async (goods: IGoodsAddCommand): Promise<boolean> => {
-        const newGoods = await Goods.create(goods as any, {
+    addGoods: async (goodsAddCommand: IGoodsAddCommand): Promise<boolean> => {
+        try {
+            await Goods.create(goodsAddCommand as any, {
+                include: [
+                    {
+                        association: Goods.Pictures,
+                        as: "pictures",
+                    },
+                ],
+            });
+            return true;
+        } catch (e) {
+            return false;
+        }
+    },
+    editGoods: async (goodsEditCommand: IGoodsEditCommand): Promise<boolean> => {
+        // https://github.com/sequelize/sequelize/issues/11836
+        const goods = await Goods.findByPk(goodsEditCommand?.id, {
             include: [
                 {
-                    association: Goods.pictures,
+                    association: Goods.Pictures,
                     as: "pictures",
                 },
             ],
         });
-        console.log("newGoods: ", newGoods);
+        const toDelete =
+            goods?.pictures?.filter((item) => !goodsEditCommand?.pictures?.some((element) => element.id === item.id)) ||
+            [];
+        const toUpdate =
+            goods?.pictures?.filter((item) => goodsEditCommand?.pictures?.some((element) => element.id === item.id)) ||
+            [];
+        const toCreate = goodsEditCommand?.pictures?.filter((item) => !item.id);
+
+        for (let item of toDelete) {
+            await item.destroy();
+        }
+        for (let item of toUpdate) {
+            await item.update(goodsEditCommand?.pictures?.find((element) => element.id === item.id));
+        }
+        for (let item of toCreate) {
+            await GoodsPicture.create({ ...item, goodsId: goodsEditCommand?.id });
+        }
+
+        await goods?.update(goodsEditCommand);
+        await goods?.save();
         return true;
     },
 };

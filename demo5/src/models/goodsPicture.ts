@@ -1,7 +1,9 @@
 import { DataTypes, Model, Sequelize } from "sequelize";
 
 const GoodsPictureModel = (sequelize: Sequelize) => {
-    class GoodsPicture extends Model {}
+    class GoodsPicture extends Model {
+        declare static Goods: any;
+    }
     GoodsPicture.init(
         {
             id: {

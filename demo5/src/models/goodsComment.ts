@@ -2,7 +2,7 @@ import { DataTypes, Model, Sequelize } from "sequelize";
 
 const GoodsCommentModel = (sequelize: Sequelize) => {
     class GoodsComment extends Model {
-        declare static user: any;
+        declare static User: any;
     }
 
     GoodsComment.init(

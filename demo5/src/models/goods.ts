@@ -1,10 +1,11 @@
-import { DataTypes, Model, Sequelize } from "sequelize";
+import { BelongsTo, DataTypes, HasMany, Model, Sequelize } from "sequelize";
 
 const GoodsModel = (sequelize: Sequelize) => {
     class Goods extends Model {
-        declare static category: any;
-        declare static pictures: any;
-        declare static comments: any;
+        declare static Category: BelongsTo;
+        declare static Pictures: HasMany;
+        declare static Comments: HasMany;
+        declare pictures: Array<any>;
     }
     Goods.init(
         {

@@ -48,4 +48,20 @@ controller.post("/", async (request: Request, response: Response, next: NextFunc
     });
 });
 
+/**
+ * @route PUT /goods
+ * @group goods
+ * @param {GoodsEditCommand.model} GoodsEditCommand.body.required
+ * @returns {object} 200 - edit goods result
+ * @returns {Error}  default - Unexpected error
+ * @security JWT
+ */
+controller.put("/", async (request: Request, response: Response, next: NextFunction) => {
+    const result = await GoodsService.editGoods(request.body);
+    response.json({
+        code: 200,
+        data: result,
+    });
+});
+
 export default controller;

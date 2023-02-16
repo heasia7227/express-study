@@ -64,4 +64,20 @@ controller.put("/", async (request: Request, response: Response, next: NextFunct
     });
 });
 
+/**
+ * @route DELETE /goods/{goodsId}
+ * @group goods
+ * @param {integer} goodsId.path.required - goodsId
+ * @returns {object} 200 - goods delete result
+ * @returns {Error}  default - Unexpected error
+ */
+controller.delete("/:goodsId", async (request: Request, response: Response, next: NextFunction) => {
+    const { goodsId } = request.params;
+    const goods = await GoodsService.deleteGoods(Number(goodsId));
+    response.json({
+        code: 200,
+        data: goods,
+    });
+});
+
 export default controller;

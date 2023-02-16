@@ -6,6 +6,7 @@ const GoodsModel = (sequelize: Sequelize) => {
         declare static Pictures: HasMany;
         declare static Comments: HasMany;
         declare pictures: Array<any>;
+        declare state: number;
     }
     Goods.init(
         {
